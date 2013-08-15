@@ -3,8 +3,14 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.werk()
+GET     /                           controllers.Application.home()
+GET     /Sieraden                   controllers.Application.direct(page = "werk")
+GET     /Diensten                   controllers.Application.direct(page = "dienst")
+GET     /Rave                       controllers.Application.direct(page = "rave")
+GET     /Contact                    controllers.Application.direct(page = "cont")
 GET     /item/:id                   controllers.Application.getItem(id: Long)
+GET     /subsite/:site              controllers.Application.receiveSubsite(site: String)
+GET     /meta/:site                 controllers.Application.receiveMeta(site: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

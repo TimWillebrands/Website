@@ -4,15 +4,15 @@
 
 //Global values
 
-@menuBarWidth: 26em;
+@menuBarWidth: 22em;
 @navBarHeight: 52px;
 @borderHeight: 4px;
 
 @mainColour: #333333;
 @accentColour: #05326D;
 @hoverColour: lighten(@accentColour, 25%);
-//@edgeColour: lighten(@accentColour, 5%);   //Kader om navbar knoppen
-@edgeColour: #05326D;
+@edgeColour: lighten(@accentColour, 5%);   //Kader om navbar knoppen
+//@edgeColour: #05326D;
 
 @textColour: #cbcbcb;
 @activeTextColour: #f6f6f6;
@@ -43,7 +43,8 @@
 
 body{
   margin: 0px;
-  .dosis(12px);
+  .openSans(12px);
+  //overflow: hidden;
 }
 
 
@@ -70,7 +71,7 @@ body{
       z-index:599;
       cursor:default;
     }
-    li:hover > a, li.active > a {
+    li:hover > span, li.active > span {
       background:@accentColour;
       color:@activeTextColour;
     }
@@ -102,21 +103,22 @@ body{
         right:-99.5%;
         border-top:0 none;
       }
-      a {
+      span {
         background:@accentColour;
         color:@activeTextColour;
         border:1px solid @edgeColour;
         border-top:0 none;
         line-height:150%;
         padding:16px 20px;
+        cursor: pointer;
       }
-      li:first-child > a {
+      li:first-child > span {
         border-top:1px solid @edgeColour;
       }
-      li:hover > a {
+      li:hover > span {
         background:@hoverColour;
       }
-      li:last-child > a {
+      li:last-child > span {
         -moz-border-radius:0 0 3px 3px;
         -webkit-border-radius:0 0 3px 3px;
         border-radius:0 0 3px 3px;
@@ -127,7 +129,7 @@ body{
         -webkit-box-shadow:0 1px 0 @accentColour;
         box-shadow:0 1px 0 @accentColour;
       }
-      li:last-child:hover > a {
+      li:last-child:hover > span {
         -moz-border-radius:0 0 0 3px;
         -webkit-border-radius:0 0 0 3px;
         border-radius:0 0 0 3px;
@@ -135,7 +137,7 @@ body{
         -webkit-background-clip:padding-box;
         background-clip:padding-box;
       }
-      li.has-sub > a:after {
+      li.has-sub > span:after {
         content:'+';
         position:absolute;
         top:50%;
@@ -146,7 +148,7 @@ body{
     li:hover > ul {
       visibility:visible;
     }
-    li.has-sub > a:after {
+    li.has-sub > span:after {
       content:'+';
       margin-left:5px;
     }
@@ -164,17 +166,18 @@ body{
     margin:0;
     padding:0;
   }
-  a {
+  span {
     display:block;
     line-height:1em;
     text-decoration:none;
     background:@mainColour;
     color:@textColour;
     padding:0 20px;
+    cursor: pointer;
   }
   > ul {
     *display:inline-block;
-    > li > a {
+    > li > span {
       line-height: @navBarHeight - @borderHeight;
     }
   }
@@ -284,6 +287,12 @@ body{
   }
 }
 
+#content{
+  position: absolute;
+  width:100%;
+  top: @navBarHeight;
+}
+
 
 //Class statements
 
@@ -314,7 +323,7 @@ body{
       opacity: 0;
       text-align:center;
       box-sizing: border-box;
-      border-radius: 9px;
+      //border-radius: 9px;
       cursor: pointer;
     }
   }

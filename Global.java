@@ -21,7 +21,7 @@ import org.apache.commons.io.IOUtils;
 
 public class Global extends GlobalSettings {
 
-    private String DBUrl = "http://pastebin.com/raw.php?i=uVtfpZyL";
+    private String DBUrl = "https://googledrive.com/host/0B51fxESCBfs-STV1My13c09zdVE/ImageDatabase.json";
     private Locale dutchLoc = new Locale("nl", "NL");
 
     public String getDatabase() throws MalformedURLException, IOException{

@@ -1,8 +1,12 @@
 logs
 project/project
 project/target
+project/plugins.sbt
+conf/evolutions/default/
+
 target
 tmp
+.target
 .history
 dist
 /.idea
