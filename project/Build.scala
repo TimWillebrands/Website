@@ -20,16 +20,5 @@ object ApplicationBuild extends Build {
   )
 
   val main = play.Project(appName, appVersion, appDependencies)
-  
-  main.settings(
-	  cloudBeesSettings :_*).settings(
-      CloudBees.applicationId := Some("rave/web"),
-      CloudBees.username := Some("rave5887"),
-      CloudBees.apiKey := Some("DD8E513F1DEEE470"),
-      CloudBees.apiSecret := Some("ZBRQXZV/ED1OLC1GUF7R34LJJEDD0CNPRMMXZORAHZC="),
-      CloudBees.host := "https://api-eu.cloudbees.com/api",
-      CloudBees.deployParams := Map("runtime.java_version" -> "1.7"),
-      CloudBees.openOnUpload := false)
-
 
 }
