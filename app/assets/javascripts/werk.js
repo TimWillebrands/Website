@@ -5,8 +5,15 @@ var navBar = $("#navbar");
 var mainImg = $("#image");
 
 //Functions
-resize = function(ow,oh){
-    var w = $(window).width() - ow;
+resize = function(oh){
+	var width = $(window).width();
+    if(width < 901) {
+    	menBar.css("width",("12em"));
+    }else{
+    	menBar.css("width",("23em"));
+    }
+    
+    var w = width - menBar.outerWidth();
     var h = $(window).height() - oh;
     imgCont.css("width",(w).toString() + 'px');
     imgCont.css("height",(h).toString() + 'px');
@@ -31,30 +38,29 @@ replaceImage = function(imageObj) {
     });
 }
 
-//Events
-$(".menuButton").click(function(){
-    var id = $(this).attr('id');
-    $.getJSON("/item/"+ id.replace('piece_', ''), function(piece) {
-        replaceImage(piece.images[0]);            
-    });
-});
+//Binding events and other script logic
 
-getBgImg(mainImg).on('load',function () {
-    $.getJSON("/item/1", function(piece) {
-    	var img = piece.images[0];
-    	mainImg.css('background-position', img.focus.replace('=','').replace('=',''));
-        mainImg.css('opacity', '1');            
-    });
-});
+	$(".menuButton").click(function(){
+	    var id = $(this).attr('id');
+	    $.getJSON("/item/"+ id.replace('piece_', ''), function(piece) {
+	        replaceImage(piece.images[0]);            
+	    });
+	});
+	
+	getBgImg(mainImg).on('load',function () {
+	    $.getJSON("/item/1", function(piece) {
+	    	var img = piece.images[0];
+	    	mainImg.css('background-position', img.focus.replace('=','').replace('=',''));
+	        mainImg.css('opacity', '1');            
+	    });
+	});
+	
+	$(window).resize(function() {
+	    resize(navBar.height());
+	});
 
-resize(menBar.outerWidth() , navBar.height());
-
-$(window).resize(function() {
-    resize(menBar.outerWidth() , navBar.height());
-});
-
-//Script logic
-$(".active").removeClass("active");
-$("#werk").parent().addClass("active");
-$(".horizontal").mCustomScrollbar({horizontalScroll:true});
-$(".vertical").mCustomScrollbar({theme:"dark"});
+	resize(navBar.height());
+	$(".active").removeClass("active");
+	$("#werk").parent().addClass("active");
+	$(".horizontal").mCustomScrollbar({horizontalScroll:true});
+	$(".vertical").mCustomScrollbar({theme:"dark"});
