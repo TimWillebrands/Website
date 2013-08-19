@@ -33,7 +33,7 @@ replaceImage = function(imageObj) {
     mainImg.css('background-image', 'url(' + imageObj.url + ')');
     mainImg.css('background-position', imageObj.focus);
 
-    getBgImg(mainImg).on('load',function () {
+    imagesLoaded( getBgImg(mainImg),function () {
     	mainImg.css('opacity', '1');
     });
 }
@@ -46,13 +46,22 @@ replaceImage = function(imageObj) {
 	        replaceImage(piece.images[0]);            
 	    });
 	});
-	
-	getBgImg(mainImg).on('load',function () {
+
+	/*getBgImg(mainImg).on('load',function () {
 	    $.getJSON("/item/1", function(piece) {
 	    	var img = piece.images[0];
 	    	mainImg.css('background-position', img.focus.replace('=','').replace('=',''));
 	        mainImg.css('opacity', '1');            
 	    });
+	});*/
+	
+	imagesLoaded( getBgImg(mainImg), function () {
+	    $.getJSON("/item/1", function(piece) {
+	    	var img = piece.images[0];
+	    	mainImg.css('background-position', img.focus.replace('=','').replace('=',''));
+	        mainImg.css('opacity', '1');            
+	    });
+	    ev.off();
 	});
 	
 	$(window).resize(function() {
