@@ -10,7 +10,9 @@ import play.Logger;
 import play.api.templates.Html;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Results;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -37,6 +39,8 @@ public class Application extends Controller {
     public static Html getSubsite(String subSiteName) {
         if(subSiteName.equalsIgnoreCase("werk")){
         	List<Piece> allPieces = Piece.find.all();
+        	if(allPieces.isEmpty())
+        		allPieces.add(createExamplePiece());
             return views.html.werk.render(allPieces);
         }else if(subSiteName.equalsIgnoreCase("dienst")){
         	List<Piece> allPieces = Piece.find.all();
@@ -64,7 +68,7 @@ public class Application extends Controller {
         }
         
     	StringBuilder tmp = new StringBuilder();
-    	tmp.append("400 - Internal server error");
+    	tmp.append("<!--400 - Internal server error-->");
         return new Html(tmp);
     }
 
@@ -91,4 +95,23 @@ public class Application extends Controller {
         return ok(jsonPiece.toJSONString());
     }
   
+    private static Piece createExamplePiece(){
+		Piece piece = new Piece();
+		List<PieceImage> sampleImages = new ArrayList<>();
+        piece.name = "Example";
+        piece.addeddate = "xx-xx-xx";
+        piece.description = "This is just an example for when the database is empty, go to the admin screen and remove it from the db";
+        piece.kind = "Ring";
+        piece.thumbnail = "http://www.colourbox.com/preview/4207474-183718-sample-stamp-shows-example-symbol-or-taste.jpg";
+        PieceImage img = new PieceImage();
+        img.name = "Sample image";
+        img.description = "And example of an image";
+        img.focus = "50% 50%";
+        img.url = "http://akhil.solutionsforstartup.com/wp-content/uploads/2013/07/sample.jpg";
+        sampleImages.add(img);
+        piece.images = sampleImages;
+        piece.save();
+        
+        return piece;
+    }
 }

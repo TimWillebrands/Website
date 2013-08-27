@@ -40,36 +40,36 @@ replaceImage = function(imageObj) {
 
 //Binding events and other script logic
 
-	$(".menuButton").click(function(){
-	    var id = $(this).attr('id');
-	    $.getJSON("/item/"+ id.replace('piece_', ''), function(piece) {
-	        replaceImage(piece.images[0]);            
-	    });
-	});
+$(".menuButton").click(function(){
+    var id = $(this).attr('id');
+    $.getJSON("/item/"+ id.replace('piece_', ''), function(piece) {
+        replaceImage(piece.images[0]);            
+    });
+});
 
-	/*getBgImg(mainImg).on('load',function () {
-	    $.getJSON("/item/1", function(piece) {
-	    	var img = piece.images[0];
-	    	mainImg.css('background-position', img.focus.replace('=','').replace('=',''));
-	        mainImg.css('opacity', '1');            
-	    });
-	});*/
-	
-	imagesLoaded( getBgImg(mainImg), function () {
-	    $.getJSON("/item/1", function(piece) {
-	    	var img = piece.images[0];
-	    	mainImg.css('background-position', img.focus.replace('=','').replace('=',''));
-	        mainImg.css('opacity', '1');            
-	    });
-	    ev.off();
-	});
-	
-	$(window).resize(function() {
-	    resize(navBar.height());
-	});
+/*getBgImg(mainImg).on('load',function () {
+    $.getJSON("/item/1", function(piece) {
+    	var img = piece.images[0];
+    	mainImg.css('background-position', img.focus.replace('=','').replace('=',''));
+        mainImg.css('opacity', '1');            
+    });
+});*/
 
-	resize(navBar.height());
-	$(".active").removeClass("active");
-	$("#werk").parent().addClass("active");
-	$(".horizontal").mCustomScrollbar({horizontalScroll:true});
-	$(".vertical").mCustomScrollbar({theme:"dark"});
+imagesLoaded( getBgImg(mainImg), function () {
+    $.getJSON("/item/1", function(piece) {
+    	var img = piece.images[0];
+    	mainImg.css('background-position', img.focus.replace('=','').replace('=',''));
+        mainImg.css('opacity', '1');            
+    });
+    ev.off();
+});
+
+$(window).resize(function() {
+    resize(navBar.height());
+});
+
+resize(navBar.height());
+$(".active").removeClass("active");
+$("#werk").parent().addClass("active");
+$(".horizontal").mCustomScrollbar({horizontalScroll:true});
+$(".vertical").mCustomScrollbar({theme:"dark"});

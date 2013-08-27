@@ -11,7 +11,7 @@
 @mainColour: #333333;
 @accentColour: #05326D;
 @hoverColour: lighten(@accentColour, 25%);
-@edgeColour: lighten(@accentColour, 5%);   //Kader om navbar knoppen
+@edgeColour: @accentColour;   //Kader om navbar knoppen
 //@edgeColour: #05326D;
 
 @textColour: #cbcbcb;
@@ -295,6 +295,7 @@ body{
   position: absolute;
   width:100%;
   top: @navBarHeight;
+  z-index: -1;
 }
 
 

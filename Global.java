@@ -30,7 +30,6 @@ public class Global extends GlobalSettings {
         try {
             String db = IOUtils.toString( in );
             return db;
-            //return ""
         } finally {
             IOUtils.closeQuietly(in);
         }
@@ -39,7 +38,7 @@ public class Global extends GlobalSettings {
     @Override
     public void onStart(Application app) {
         Logger.info("Application has started");
-        JSONParser parser = new JSONParser();
+        /*JSONParser parser = new JSONParser();
 
         try{
             String db=getDatabase();
@@ -113,6 +112,6 @@ public class Global extends GlobalSettings {
             Logger.info(e.getMessage());
         } catch (ParseException e) {
             Logger.info(e.getMessage());
-        }
+        }*/
     }
 }
